@@ -1,0 +1,1245 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=390, initial-scale=1.0" />
+  <title>LP Grand Litier – Mobile</title>
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;600;700;900&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --orange: #FF7500;
+      --orange-light: #FFEAD9;
+      --bleu-gris: #5C7388;
+      --gris-light: #F8F8F8;
+      --gris-border: #DCDFE2;
+      --gris-text: #6A6A6A;
+      --dark: #2F2F2F;
+      --black: #000;
+      --white: #fff;
+      --w: 390px;
+      --px: 20px;
+    }
+
+    html, body {
+      width: var(--w);
+      background: var(--white);
+      font-family: 'Calibri', 'Georgia', serif;
+      color: var(--dark);
+      overflow-x: hidden;
+    }
+
+    /* ─── ANNOUNCEMENT BAR ─────────────────────────────── */
+    .announce {
+      width: 100%;
+      background: var(--orange-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 9px 16px;
+      border-radius: 0;
+    }
+    .announce-dot {
+      width: 4px; height: 4px;
+      background: var(--orange);
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .announce p {
+      font-family: 'Raleway', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      color: transparent;
+      background: linear-gradient(178deg, #BF6825 3%, #D39041 52%, #BD6524 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      text-align: center;
+      letter-spacing: -0.24px;
+    }
+    .announce p strong { font-weight: 900; }
+
+    /* ─── NAVBAR ───────────────────────────────────────── */
+    .nav {
+      width: 100%;
+      background: var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px var(--px);
+      box-shadow: 0 4px 4px rgba(217,217,217,0.25);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .nav-logo {
+      height: 32px;
+      object-fit: contain;
+    }
+    .nav-hamburger {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+    }
+    .nav-hamburger span {
+      display: block;
+      width: 24px; height: 2px;
+      background: var(--dark);
+      border-radius: 2px;
+    }
+
+    /* ─── HERO ─────────────────────────────────────────── */
+    .hero {
+      width: 100%;
+      padding: 16px var(--px) 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .hero-main {
+      width: 100%;
+      height: 240px;
+      border-radius: 20px;
+      overflow: hidden;
+      position: relative;
+      background: linear-gradient(167deg, #BF6825 3%, #D39041 52%, #BD6524 100%);
+    }
+    .hero-main img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      position: absolute; inset: 0;
+    }
+    .hero-main::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: rgba(0,0,0,0.45);
+      border-radius: 20px;
+    }
+    .hero-main-content {
+      position: absolute;
+      bottom: 20px; left: 20px; right: 20px;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .hero-main-content h1 {
+      font-family: 'Calibri', Georgia, serif;
+      font-weight: 700;
+      font-size: 22px;
+      color: var(--white);
+      line-height: 1.25;
+      letter-spacing: -0.5px;
+    }
+    .hero-secondary {
+      width: 100%;
+      height: 160px;
+      border-radius: 20px;
+      overflow: hidden;
+      position: relative;
+    }
+    .hero-secondary img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      position: absolute; inset: 0;
+    }
+    .hero-secondary::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.65) 100%);
+    }
+    .hero-secondary-content {
+      position: absolute;
+      bottom: 16px; left: 16px; right: 16px;
+      z-index: 2;
+    }
+    .hero-secondary-content p {
+      font-family: 'Calibri', Georgia, serif;
+      font-weight: 700;
+      font-size: 16px;
+      color: var(--white);
+      line-height: 1.3;
+      text-align: center;
+      margin-bottom: 12px;
+    }
+
+    /* ─── BUTTONS ──────────────────────────────────────── */
+    .btn-orange {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: var(--orange);
+      color: var(--white);
+      font-family: 'Gotham', 'Raleway', sans-serif;
+      font-weight: 600;
+      font-size: 14px;
+      padding: 14px 20px;
+      border-radius: 100px;
+      letter-spacing: -0.5px;
+      white-space: nowrap;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+    }
+    .btn-orange .arrow {
+      width: 5px; height: 10px;
+      border-right: 2px solid white;
+      border-top: 2px solid white;
+      transform: rotate(45deg);
+      flex-shrink: 0;
+    }
+    .btn-bleu {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: var(--bleu-gris);
+      color: var(--white);
+      font-family: 'Gotham', 'Raleway', sans-serif;
+      font-weight: 600;
+      font-size: 14px;
+      padding: 14px 20px;
+      border-radius: 100px;
+      letter-spacing: -0.5px;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+    }
+    .btn-bleu .arrow {
+      width: 5px; height: 10px;
+      border-right: 2px solid white;
+      border-top: 2px solid white;
+      transform: rotate(45deg);
+      flex-shrink: 0;
+    }
+    .btn-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Gotham', 'Raleway', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--black);
+      border-bottom: 1.5px solid var(--black);
+      padding-bottom: 4px;
+      background: none;
+      border-top: none; border-left: none; border-right: none;
+      cursor: pointer;
+      letter-spacing: -0.5px;
+    }
+
+    /* ─── SECTION COMMON ───────────────────────────────── */
+    .section { width: 100%; padding: 48px var(--px); }
+    .section-grey { background: var(--gris-light); }
+    .section-title {
+      font-family: 'Calibri', Georgia, serif;
+      font-weight: 700;
+      font-size: 28px;
+      line-height: 1.15;
+      color: var(--dark);
+      margin-bottom: 8px;
+    }
+    .section-subtitle {
+      font-size: 15px;
+      color: var(--gris-text);
+      line-height: 1.5;
+      margin-bottom: 28px;
+    }
+    .tag-orange {
+      display: inline-flex;
+      align-items: center;
+      background: var(--orange);
+      color: var(--white);
+      font-family: 'Calibri', Georgia, serif;
+      font-size: 13px;
+      padding: 3px 10px 2px;
+      border-radius: 6px;
+      margin-bottom: 12px;
+    }
+
+    /* ─── BRANDS STRIP ─────────────────────────────────── */
+    .brands-strip {
+      width: 100%;
+      padding: 32px var(--px);
+      background: var(--white);
+    }
+    .brands-label {
+      font-family: 'Calibri', Georgia, serif;
+      font-size: 14px;
+      color: #9B9696;
+      text-align: center;
+      margin-bottom: 16px;
+      line-height: 1.4;
+    }
+    .brands-label strong { color: var(--dark); font-weight: 700; }
+    .brands-scroll {
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      padding-bottom: 4px;
+    }
+    .brands-scroll::-webkit-scrollbar { display: none; }
+    .brand-card {
+      flex-shrink: 0;
+      width: 110px; height: 64px;
+      background: var(--white);
+      border: 1px solid #EEEAEA;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 8px;
+    }
+    .brand-card img {
+      max-width: 100%; max-height: 100%;
+      object-fit: contain;
+    }
+
+    /* ─── POUR QUI ─────────────────────────────────────── */
+    .pourqui-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .pourqui-card {
+      border-radius: 12px;
+      overflow: hidden;
+      position: relative;
+      padding: 16px;
+      min-height: 200px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
+    .pourqui-card-bg {
+      position: absolute; inset: 0;
+      background: #D9D9D9;
+      border-radius: 12px;
+    }
+    .pourqui-card-bg img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      border-radius: 12px;
+    }
+    .pourqui-card::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(to bottom, rgba(0,0,0,0) 30%, rgba(0,0,0,0.65) 100%);
+      border-radius: 12px;
+    }
+    .pourqui-card-content {
+      position: relative;
+      z-index: 2;
+    }
+    .pourqui-card-title {
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: 16px;
+      color: var(--white);
+      margin-bottom: 6px;
+    }
+    .pourqui-card-text {
+      font-family: 'Calibri', Georgia, serif;
+      font-size: 13px;
+      color: rgba(255,255,255,0.85);
+      line-height: 1.4;
+    }
+    .pourqui-card.bleu-gris { background: var(--bleu-gris); }
+    .pourqui-card.bleu-light { background: #AABBCA; }
+    .pourqui-card.white-card {
+      background: var(--white);
+      box-shadow: 0 4px 64px rgba(168,168,168,0.25);
+    }
+    .pourqui-card.white-card .pourqui-card-title { color: var(--dark); }
+    .pourqui-card.white-card .pourqui-card-text { color: var(--gris-text); }
+
+    /* ─── PRODUITS ─────────────────────────────────────── */
+    .produits-scroll {
+      display: flex;
+      gap: 14px;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      padding-bottom: 8px;
+      margin: 0 calc(-1 * var(--px));
+      padding-left: var(--px);
+      padding-right: var(--px);
+    }
+    .produits-scroll::-webkit-scrollbar { display: none; }
+    .produit-card {
+      flex-shrink: 0;
+      width: 230px;
+      background: var(--white);
+      border: 1px solid var(--gris-border);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .produit-header {
+      padding: 16px 16px 8px;
+    }
+    .produit-brand {
+      font-family: 'Calibri', Georgia, serif;
+      font-size: 11px;
+      color: var(--orange);
+    }
+    .produit-name {
+      font-family: 'Calibri', Georgia, serif;
+      font-weight: 700;
+      font-size: 15px;
+      color: #343A40;
+      margin: 2px 0;
+    }
+    .produit-size {
+      font-size: 11px;
+      color: #343A40;
+    }
+    .produit-img-wrap {
+      background: var(--gris-light);
+      padding: 8px;
+    }
+    .produit-img-wrap img {
+      width: 100%; height: 140px;
+      object-fit: cover;
+      border-radius: 6px;
+    }
+    .produit-footer {
+      padding: 12px 16px 16px;
+    }
+    .produit-desc {
+      font-size: 11px;
+      color: #343A40;
+      line-height: 1.5;
+      margin-bottom: 12px;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    /* ─── 3 ÉTAPES ─────────────────────────────────────── */
+    .etapes-img {
+      width: 100%; height: 220px;
+      border-radius: 16px;
+      overflow: hidden;
+      position: relative;
+      margin-bottom: 28px;
+    }
+    .etapes-img img {
+      width: 100%; height: 100%; object-fit: cover;
+    }
+    .etapes-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .etape-item {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      padding-bottom: 28px;
+      position: relative;
+    }
+    .etape-item:not(:last-child) .etape-line {
+      display: block;
+      position: absolute;
+      left: 22px;
+      top: 46px;
+      bottom: 0;
+      width: 2px;
+      background: repeating-linear-gradient(to bottom, var(--dark) 0, var(--dark) 4px, transparent 4px, transparent 8px);
+    }
+    .etape-num {
+      width: 44px; height: 44px;
+      background: var(--dark);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      font-family: 'Gotham', 'Raleway', sans-serif;
+      font-weight: 600;
+      font-size: 16px;
+      color: var(--white);
+      z-index: 1;
+    }
+    .etape-content {}
+    .etape-title {
+      font-family: 'Calibri', Georgia, serif;
+      font-weight: 700;
+      font-size: 18px;
+      color: var(--dark);
+      margin-bottom: 4px;
+      line-height: 1.3;
+    }
+    .etape-text {
+      font-family: 'Calibri', Georgia, serif;
+      font-size: 14px;
+      color: #081D1B;
+      line-height: 1.5;
+      letter-spacing: -0.14px;
+    }
+
+    /* ─── AVIS ─────────────────────────────────────────── */
+    .avis-scroll {
+      display: flex;
+      gap: 16px;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      margin: 0 calc(-1 * var(--px));
+      padding: 20px var(--px) 8px;
+    }
+    .avis-scroll::-webkit-scrollbar { display: none; }
+    .avis-card {
+      flex-shrink: 0;
+      width: 300px;
+      background: var(--white);
+      border-radius: 8px;
+      box-shadow: 0 4px 34px rgba(0,0,0,0.08);
+      padding: 28px 24px 24px;
+      position: relative;
+    }
+    .avis-quote {
+      position: absolute;
+      top: -10px; left: 16px;
+      font-size: 40px;
+      color: var(--orange);
+      line-height: 1;
+      font-family: Georgia, serif;
+    }
+    .avis-text {
+      font-family: 'Calibri', Georgia, serif;
+      font-size: 13px;
+      color: #333;
+      line-height: 1.5;
+      margin-bottom: 20px;
+    }
+    .avis-author {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+    .avis-avatar {
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      object-fit: cover;
+      background: var(--gris-border);
+      flex-shrink: 0;
+    }
+    .avis-name {
+      font-family: 'Manrope', 'Raleway', sans-serif;
+      font-weight: 700;
+      font-size: 15px;
+      color: #333;
+    }
+    .avis-country {
+      font-size: 13px;
+      color: #333;
+      font-family: 'Montserrat', sans-serif;
+    }
+    .avis-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .avis-date {
+      font-size: 13px;
+      color: #333;
+    }
+    .avis-stars img {
+      height: 16px;
+      object-fit: contain;
+    }
+
+    /* ─── SERVICES EN LIGNE ────────────────────────────── */
+    .services-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px 16px;
+      padding: 24px 0 0;
+    }
+    .service-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      text-align: center;
+    }
+    .service-icon {
+      width: 40px; height: 40px;
+      object-fit: contain;
+    }
+    .service-label {
+      font-family: 'General Sans', 'Calibri', Georgia, serif;
+      font-weight: 500;
+      font-size: 13px;
+      color: var(--dark);
+      line-height: 1.3;
+    }
+
+    /* ─── FORMULAIRE ───────────────────────────────────── */
+    .form-wrap {
+      background: var(--white);
+      border-radius: 12px;
+      padding: 24px;
+    }
+    .form-row {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+    .form-field {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      gap: 4px;
+    }
+    .form-field label {
+      font-family: 'Calibri', Georgia, serif;
+      font-size: 12px;
+      color: var(--dark);
+      letter-spacing: -0.05px;
+    }
+    .form-field input,
+    .form-field textarea {
+      background: var(--white);
+      border: 0.5px solid #D7D7D7;
+      border-radius: 8px;
+      padding: 10px 14px;
+      font-family: 'Calibri', Georgia, serif;
+      font-size: 13px;
+      color: #D9D9D9;
+      outline: none;
+      width: 100%;
+    }
+    .form-field textarea {
+      height: 100px;
+      resize: none;
+    }
+    .form-field.full { flex: none; width: 100%; margin-bottom: 12px; }
+
+    /* ─── AVANTAGES ────────────────────────────────────── */
+    .avantages-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .avantages-row {
+      display: flex;
+      gap: 12px;
+    }
+    .avantage-card {
+      background: var(--gris-light);
+      border-radius: 8px;
+      padding: 16px;
+      flex: 1;
+    }
+    .avantage-card.full { flex: none; width: 100%; }
+    .avantage-icon {
+      width: 28px; height: 28px;
+      object-fit: contain;
+      margin-bottom: 8px;
+    }
+    .avantage-title {
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: 14px;
+      color: var(--dark);
+      margin-bottom: 4px;
+    }
+    .avantage-text {
+      font-family: 'Calibri', Georgia, serif;
+      font-size: 12px;
+      color: var(--gris-text);
+      line-height: 1.4;
+    }
+    .avantages-img {
+      width: 100%; height: 220px;
+      border-radius: 16px;
+      overflow: hidden;
+      position: relative;
+      margin-top: 24px;
+    }
+    .avantages-img img {
+      width: 100%; height: 100%; object-fit: cover;
+    }
+    .avantages-img-card {
+      position: absolute;
+      bottom: 16px; left: 16px;
+      background: var(--white);
+      border-radius: 8px;
+      padding: 14px;
+      width: calc(100% - 32px);
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .avantages-img-card-icon {
+      width: 24px; height: 24px;
+      margin-bottom: 4px;
+    }
+    .avantages-img-card-title {
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: 14px;
+      color: var(--dark);
+    }
+    .avantages-img-card-text {
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      color: var(--gris-text);
+    }
+
+    /* ─── FOOTER ───────────────────────────────────────── */
+    .footer {
+      background: var(--gris-light);
+      padding: 48px var(--px) 32px;
+    }
+    .footer-logo {
+      height: 36px;
+      margin-bottom: 20px;
+      object-fit: contain;
+    }
+    .footer-visit {
+      font-family: 'Helvetica', sans-serif;
+      font-weight: 700;
+      font-size: 16px;
+      color: #343A40;
+      line-height: 1.5;
+      margin-bottom: 16px;
+    }
+    .footer-btn-magasin {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--orange);
+      color: var(--white);
+      border-radius: 30px;
+      padding: 10px 20px;
+      font-family: 'Helvetica', sans-serif;
+      font-weight: 700;
+      font-size: 13px;
+      margin-bottom: 28px;
+      border: none;
+      cursor: pointer;
+    }
+    .footer-section-title {
+      font-family: 'Helvetica', sans-serif;
+      font-weight: 700;
+      font-size: 13px;
+      color: #343A40;
+      margin-bottom: 8px;
+      margin-top: 20px;
+    }
+    .footer-links {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 4px;
+    }
+    .footer-link {
+      font-family: 'Helvetica', sans-serif;
+      font-size: 12px;
+      color: #343A40;
+      text-decoration: none;
+    }
+    .footer-social {
+      display: flex;
+      gap: 12px;
+      margin-top: 20px;
+      margin-bottom: 28px;
+    }
+    .footer-social-icon {
+      width: 32px; height: 32px;
+      object-fit: contain;
+    }
+    .footer-logos {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      margin-bottom: 28px;
+    }
+    .footer-eco-logo {
+      height: 40px; object-fit: contain;
+    }
+    .footer-divider {
+      width: 100%;
+      height: 1px;
+      background: var(--gris-border);
+      margin-bottom: 16px;
+    }
+    .footer-legal {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 16px;
+      margin-bottom: 10px;
+    }
+    .footer-legal a {
+      font-family: 'Helvetica', sans-serif;
+      font-size: 11px;
+      color: #343A40;
+      text-decoration: none;
+    }
+    .footer-copy {
+      font-family: 'Helvetica', sans-serif;
+      font-size: 11px;
+      color: #343A40;
+    }
+
+    /* ─── DIVIDER ──────────────────────────────────────── */
+    .h-divider {
+      width: 100%;
+      height: 1px;
+      background: var(--gris-border);
+    }
+  </style>
+</head>
+<body>
+
+<!-- ANNOUNCEMENT BAR -->
+<div class="announce">
+  <div class="announce-dot"></div>
+  <p><strong>OFFRE SPÉCIALE :</strong> Essai en magasin <strong>OFFERT</strong></p>
+  <div class="announce-dot"></div>
+</div>
+
+<!-- NAVBAR -->
+<nav class="nav">
+  <!-- Logo Grand Litier (SVG inline placeholder) -->
+  <svg width="100" height="33" viewBox="0 0 123 41" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <text x="0" y="28" font-family="Calibri,Georgia,serif" font-weight="700" font-size="22" fill="#2F2F2F">Grand Litier</text>
+  </svg>
+  <div class="nav-hamburger">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <!-- Main hero -->
+  <div class="hero-main">
+    <img src="https://www.figma.com/api/mcp/asset/cb83a5b6-1df0-44fe-977e-670f52bd9789" alt="Grand Litier offres" />
+    <div class="hero-main-content">
+      <h1>Les Offres<br/>Convertibles<br/><span style="color:#FF7500">GRAND LITIER</span></h1>
+      <button class="btn-orange" style="width:auto; padding:12px 20px; font-size:13px;">
+        Réservez votre essai en magasin
+        <span class="arrow"></span>
+      </button>
+    </div>
+  </div>
+  <!-- Secondary hero -->
+  <div class="hero-secondary">
+    <img src="https://www.figma.com/api/mcp/asset/3f9632af-0dcd-4343-a51b-bc9fc76910e6" alt="Nos conseillers" />
+    <div class="hero-secondary-content">
+      <p>Rencontrez nos conseillers Grand Litier en magasin</p>
+      <button class="btn-orange" style="font-size:13px; padding:12px 16px;">
+        Réservez votre essai en magasin <span class="arrow"></span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- BRANDS STRIP -->
+<div class="brands-strip">
+  <p class="brands-label">Les plus grandes marques de literie sont chez <strong>Grand Litier</strong></p>
+  <div class="brands-scroll">
+    <div class="brand-card"><img src="https://www.figma.com/api/mcp/asset/c0045200-c165-4c5e-b5e5-ceccbe4016a5" alt="Tempur" /></div>
+    <div class="brand-card"><img src="https://www.figma.com/api/mcp/asset/a6c56108-49a9-450c-b1cc-dd3790133f29" alt="Marque 2" /></div>
+    <div class="brand-card"><img src="https://www.figma.com/api/mcp/asset/e7f3d3ca-855e-4df2-b1fa-2b55562d8cec" alt="Marque 3" /></div>
+    <div class="brand-card"><img src="https://www.figma.com/api/mcp/asset/828f8940-09c9-47b3-add9-6b458bd1df0a" alt="Marque 4" /></div>
+    <div class="brand-card"><img src="https://www.figma.com/api/mcp/asset/e709d38b-46d7-446e-8204-dc336cb0cd0f" alt="Marque 5" /></div>
+    <div class="brand-card"><img src="https://www.figma.com/api/mcp/asset/f1f6fb9b-8871-4805-a3a4-5f3b4f02c0e4" alt="Marque 6" /></div>
+    <div class="brand-card"><img src="https://www.figma.com/api/mcp/asset/c850bdde-98f8-43a4-b3c6-70030fa7fdfe" alt="Marque 7" /></div>
+  </div>
+</div>
+
+<!-- POUR QUI -->
+<div class="section section-grey">
+  <h2 class="section-title">Grand Litier est parfait pour…</h2>
+  <p class="section-subtitle" style="margin-bottom:24px;">Parce que chaque dormeur est unique,</p>
+  <div class="pourqui-cards">
+    <!-- Card 1 -->
+    <div class="pourqui-card bleu-gris">
+      <div class="pourqui-card-bg">
+        <img src="https://www.figma.com/api/mcp/asset/4edd9b0d-102e-4bd1-a6c2-57f5b73afd5c" alt="" />
+      </div>
+      <div class="pourqui-card-content">
+        <p class="pourqui-card-title">Le rêveur exigeant</p>
+        <p class="pourqui-card-text">Il recherche l'excellence, le matelas parfait où tout s'aligne : confort, élégance et savoir-faire français.</p>
+      </div>
+    </div>
+    <!-- Card 2 -->
+    <div class="pourqui-card bleu-light">
+      <div class="pourqui-card-bg">
+        <img src="https://www.figma.com/api/mcp/asset/2120bd19-ef43-494f-93a5-c8af0d82afc0" alt="" />
+      </div>
+      <div class="pourqui-card-content">
+        <p class="pourqui-card-title">L'âme en mouvement</p>
+        <p class="pourqui-card-text">Son sommeil est léger, parfois agité. Il a besoin d'un soutien précis, d'un lit qui épouse chaque respiration.</p>
+      </div>
+    </div>
+    <!-- Card 3 -->
+    <div class="pourqui-card white-card">
+      <div class="pourqui-card-bg">
+        <img src="https://www.figma.com/api/mcp/asset/f8d224d4-91e6-48fd-b0f1-a243e0a23bcf" alt="" />
+      </div>
+      <div class="pourqui-card-content">
+        <p class="pourqui-card-title" style="color:var(--dark)">Le cœur cocooning</p>
+        <p class="pourqui-card-text" style="color:var(--gris-text)">Il aime s'envelopper de douceur, lire avant de dormir, s'endormir dans un nuage de confort.</p>
+      </div>
+    </div>
+    <!-- Card 4 -->
+    <div class="pourqui-card white-card">
+      <div class="pourqui-card-bg">
+        <img src="https://www.figma.com/api/mcp/asset/a00ec2b6-5244-4a1a-b55f-e89bea5e6229" alt="" />
+      </div>
+      <div class="pourqui-card-content">
+        <p class="pourqui-card-title" style="color:var(--dark)">L'esprit éco-serein</p>
+        <p class="pourqui-card-text" style="color:var(--gris-text)">Des matériaux durables, sains, et un confort qu'on ressent jusque dans le silence.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PRODUITS -->
+<div class="section">
+  <h2 class="section-title">Nos produits incontournables</h2>
+  <div class="produits-scroll">
+    <!-- Produit 1 -->
+    <div class="produit-card">
+      <div class="produit-header">
+        <p class="produit-brand">Epeda</p>
+        <p class="produit-name">Matelas Epeda Kara</p>
+        <p class="produit-size">140x190 (2 personnes)</p>
+      </div>
+      <div class="produit-img-wrap">
+        <img src="https://www.figma.com/api/mcp/asset/f727386d-5376-4725-9a6b-70df30618fd9" alt="Matelas Epeda Kara" />
+      </div>
+      <div class="produit-footer">
+        <p class="produit-desc">Ressorts ensachés, soutien homogène, confort ferme. Fabriqué en France, 26 cm d'épaisseur.</p>
+        <button class="btn-link">Réservez votre essai <span class="arrow" style="border-color:var(--black)"></span></button>
+      </div>
+    </div>
+    <!-- Produit 2 -->
+    <div class="produit-card">
+      <div class="produit-header">
+        <p class="produit-brand">Alpen</p>
+        <p class="produit-name">Matelas Alpen AL30 Hybride</p>
+        <p class="produit-size">140x190 (2 personnes)</p>
+      </div>
+      <div class="produit-img-wrap">
+        <img src="https://www.figma.com/api/mcp/asset/96ff885c-da1e-40f4-9a95-739b6b83278c" alt="Matelas Alpen AL30" />
+      </div>
+      <div class="produit-footer">
+        <button class="btn-link">Réservez votre essai <span class="arrow" style="border-color:var(--black)"></span></button>
+      </div>
+    </div>
+    <!-- Produit 3 -->
+    <div class="produit-card">
+      <div class="produit-header">
+        <p class="produit-brand">Treca</p>
+        <p class="produit-name">Matelas Treca Pluie d'été Néo</p>
+        <p class="produit-size">140x190 (2 personnes)</p>
+      </div>
+      <div class="produit-img-wrap">
+        <img src="https://www.figma.com/api/mcp/asset/0d607898-d05f-44ae-a72b-249543de63de" alt="Matelas Treca" />
+      </div>
+      <div class="produit-footer">
+        <button class="btn-link">Réservez votre essai <span class="arrow" style="border-color:var(--black)"></span></button>
+      </div>
+    </div>
+    <!-- Produit 4 -->
+    <div class="produit-card">
+      <div class="produit-header">
+        <p class="produit-brand">Hôtel & Lodge</p>
+        <p class="produit-name">Hôtel & Lodge 5</p>
+        <p class="produit-size">140x190 (2 personnes)</p>
+      </div>
+      <div class="produit-img-wrap">
+        <img src="https://www.figma.com/api/mcp/asset/a9f35aa1-4497-4e1e-bdea-4861fee72b01" alt="Matelas Hotel Lodge" />
+      </div>
+      <div class="produit-footer">
+        <button class="btn-link">Réservez votre essai <span class="arrow" style="border-color:var(--black)"></span></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 3 ÉTAPES -->
+<div class="section section-grey">
+  <!-- Photo -->
+  <div class="etapes-img">
+    <img src="https://www.figma.com/api/mcp/asset/9b2d08dd-5702-4b78-9255-cc9cb417f116" alt="Sommeil transformé" />
+  </div>
+  <h2 class="section-title" style="margin-bottom:24px;">Votre sommeil transformé, en 3 étapes simples</h2>
+  <div class="etapes-list">
+    <!-- Étape 1 -->
+    <div class="etape-item">
+      <span class="etape-line"></span>
+      <div class="etape-num">01</div>
+      <div class="etape-content">
+        <p class="etape-title">Découvrez votre style de confort</p>
+        <p class="etape-text">Nos conseillers évaluent vos préférences et votre mode de vie pour définir la literie idéale.</p>
+      </div>
+    </div>
+    <!-- Étape 2 -->
+    <div class="etape-item">
+      <span class="etape-line"></span>
+      <div class="etape-num">02</div>
+      <div class="etape-content">
+        <p class="etape-title">Composez votre univers</p>
+        <p class="etape-text">Choisissez les matières, textures et finitions qui feront de votre chambre un lieu unique.</p>
+      </div>
+    </div>
+    <!-- Étape 3 -->
+    <div class="etape-item">
+      <div class="etape-num">03</div>
+      <div class="etape-content">
+        <p class="etape-title">Vivez la différence</p>
+        <p class="etape-text">Recevez, installez, profitez de nuits pensées pour votre bien-être.</p>
+      </div>
+    </div>
+  </div>
+  <div style="margin-top:28px;">
+    <button class="btn-orange">Réservez votre essai en magasin <span class="arrow"></span></button>
+  </div>
+</div>
+
+<!-- AVIS CLIENTS -->
+<div class="section">
+  <h2 class="section-title">Des histoires qui prouvent l'importance de notre travail</h2>
+  <div class="avis-scroll">
+    <!-- Avis 1 -->
+    <div class="avis-card">
+      <span class="avis-quote">"</span>
+      <p class="avis-text">Merci à tiziano puddu pour ces super conseils pour nôtre nouveau matelas très réactif et super sympa.</p>
+      <div class="avis-author">
+        <img class="avis-avatar" src="https://www.figma.com/api/mcp/asset/2677cbd8-079e-442d-b374-6146b55a9bc1" alt="claudine" />
+        <div>
+          <p class="avis-name">claudine vercucque</p>
+          <p class="avis-country">FR</p>
+        </div>
+      </div>
+      <div class="avis-footer">
+        <span class="avis-date">12 janv, 2025</span>
+        <img src="https://www.figma.com/api/mcp/asset/97f2c9d6-f8fd-49b8-9e86-44209d59d409" alt="étoiles" style="height:16px;" />
+      </div>
+    </div>
+    <!-- Avis 2 -->
+    <div class="avis-card">
+      <span class="avis-quote">"</span>
+      <p class="avis-text">Très bonne expérience. De l'accueil jusqu'à la livraison tout à été parfait. Conseillère professionnelle et à l'écoute. SAV réactif. Nous recommandons.</p>
+      <div class="avis-author">
+        <img class="avis-avatar" src="https://www.figma.com/api/mcp/asset/a4e9ba07-bcd9-4b32-9305-a70faf9e0683" alt="Murielle" />
+        <div>
+          <p class="avis-name">MURIELLE LICATA</p>
+          <p class="avis-country">FR</p>
+        </div>
+      </div>
+      <div class="avis-footer">
+        <span class="avis-date">12 janv, 2025</span>
+        <img src="https://www.figma.com/api/mcp/asset/97f2c9d6-f8fd-49b8-9e86-44209d59d409" alt="étoiles" style="height:16px;" />
+      </div>
+    </div>
+    <!-- Avis 3 -->
+    <div class="avis-card">
+      <span class="avis-quote">"</span>
+      <p class="avis-text">Excellent travail soigné de la part de Dominique et Laurent. Nous referons appel les yeux fermés.</p>
+      <div class="avis-author">
+        <img class="avis-avatar" src="https://www.figma.com/api/mcp/asset/2677cbd8-079e-442d-b374-6146b55a9bc1" alt="A BaDu" />
+        <div>
+          <p class="avis-name">A BaDu</p>
+          <p class="avis-country">REU</p>
+        </div>
+      </div>
+      <div class="avis-footer">
+        <span class="avis-date">12 janv, 2025</span>
+        <img src="https://www.figma.com/api/mcp/asset/97f2c9d6-f8fd-49b8-9e86-44209d59d409" alt="étoiles" style="height:16px;" />
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SERVICES EN LIGNE -->
+<div class="section section-grey">
+  <h2 class="section-title" style="text-align:center;">Nos services en ligne</h2>
+  <div class="services-grid">
+    <div class="service-item">
+      <img class="service-icon" src="https://www.figma.com/api/mcp/asset/10bd6398-b83b-4b29-8ac2-0a4fdd6adaca" alt="Paiement sécurisé" />
+      <p class="service-label">Paiement sécurisé</p>
+    </div>
+    <div class="service-item">
+      <img class="service-icon" src="https://www.figma.com/api/mcp/asset/3b90f392-1e5f-44d7-a354-eac3aa347371" alt="Fabrication française" />
+      <p class="service-label">Fabrication française</p>
+    </div>
+    <div class="service-item">
+      <img class="service-icon" src="https://www.figma.com/api/mcp/asset/3fde56bb-6a8e-4166-b1f5-e00ea5660e8e" alt="Ensemble en ligne" />
+      <p class="service-label">Pour l'achat d'un ensemble en ligne</p>
+    </div>
+    <div class="service-item">
+      <img class="service-icon" src="https://www.figma.com/api/mcp/asset/5c2b7607-dac8-4ef1-8241-fae82bce14ea" alt="Livraison installation" />
+      <p class="service-label">Livraison, installation et reprise</p>
+    </div>
+    <div class="service-item" style="grid-column: 1 / -1; justify-self:center; width:50%;">
+      <img class="service-icon" src="https://www.figma.com/api/mcp/asset/86d681e1-df39-4805-a4ad-2c524524ec29" alt="Recyclage literie" />
+      <p class="service-label">Recyclage de votre ancienne literie</p>
+    </div>
+  </div>
+</div>
+
+<!-- FORMULAIRE DE CONTACT -->
+<div class="section">
+  <div style="text-align:center; margin-bottom:24px;">
+    <span class="tag-orange">Parlons de vos nuits</span>
+    <h2 class="section-title" style="margin-top:8px;">Redéfinissez vos nuits avec confort et élégance</h2>
+    <p class="section-subtitle" style="margin-bottom:0;">Besoin d'un conseil, d'un devis ou d'un accompagnement personnalisé ?</p>
+  </div>
+  <div class="form-wrap" style="box-shadow: 0 4px 34px rgba(0,0,0,0.08);">
+    <div class="form-row">
+      <div class="form-field">
+        <label>Nom*</label>
+        <input type="text" placeholder="Nom" />
+      </div>
+      <div class="form-field">
+        <label>Prénom*</label>
+        <input type="text" placeholder="Prénom" />
+      </div>
+    </div>
+    <div class="form-field full">
+      <label>Email*</label>
+      <input type="email" placeholder="Email" />
+    </div>
+    <div class="form-row">
+      <div class="form-field">
+        <label>Code postal*</label>
+        <input type="text" placeholder="Ville" />
+      </div>
+      <div class="form-field">
+        <label>Téléphone*</label>
+        <input type="tel" placeholder="Téléphone" />
+      </div>
+    </div>
+    <div class="form-field full" style="margin-top:0;">
+      <label>Décrivez votre besoin ou votre projet de literie…</label>
+      <textarea placeholder="Décrivez votre besoin ou votre projet de literie…"></textarea>
+    </div>
+    <div style="margin-top:16px;">
+      <button class="btn-orange">Réservez votre essai en magasin <span class="arrow"></span></button>
+    </div>
+  </div>
+</div>
+
+<!-- DORMEZ MIEUX / AVANTAGES -->
+<div class="section section-grey">
+  <h2 class="section-title">Dormez mieux, Vivez mieux.</h2>
+  <p class="section-subtitle">Nous croyons qu'un bon sommeil commence par le bon conseil. Chez Grand Litier La Réunion, découvrez les avantages qui font toute la différence.</p>
+  <div class="avantages-cards">
+    <div class="avantages-row">
+      <div class="avantage-card">
+        <img class="avantage-icon" src="https://www.figma.com/api/mcp/asset/81286bd2-4ed7-469f-b206-102c075b612c" alt="Confort" />
+        <p class="avantage-title">Confort sur mesure</p>
+        <p class="avantage-text">Des conseils experts pour un confort parfait.</p>
+      </div>
+      <div class="avantage-card">
+        <img class="avantage-icon" src="https://www.figma.com/api/mcp/asset/3804dde2-a0d3-4b93-a99c-8934b602e97a" alt="Garantie" />
+        <p class="avantage-title">Garantie tranquillité</p>
+        <p class="avantage-text">Des produits durables, garantis pour votre sérénité.</p>
+      </div>
+    </div>
+    <div class="avantage-card full">
+      <img class="avantage-icon" src="https://www.figma.com/api/mcp/asset/6bff7a98-2bb5-4c0a-8f87-16762ab14976" alt="Livraison" />
+      <p class="avantage-title">Livraison & installation offertes</p>
+      <p class="avantage-text">Partout sur l'île, on s'occupe de tout pour vous.</p>
+    </div>
+  </div>
+  <!-- Photo avec carte overlay -->
+  <div class="avantages-img">
+    <img src="https://www.figma.com/api/mcp/asset/9b2d08dd-5702-4b78-9255-cc9cb417f116" alt="Marques françaises" />
+    <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,0) 30%,rgba(0,0,0,0.6) 100%);border-radius:16px;"></div>
+    <div class="avantages-img-card">
+      <img class="avantages-img-card-icon" src="https://www.figma.com/api/mcp/asset/0f066490-7b29-4262-a82e-d63fae2e32f7" alt="Marques" />
+      <p class="avantages-img-card-title">Marques françaises</p>
+      <p class="avantages-img-card-text">Les plus grandes marques de literie, reconnues pour leur qualité.</p>
+    </div>
+  </div>
+  <div style="margin-top:24px;">
+    <button class="btn-orange">Réservez votre essai en magasin <span class="arrow"></span></button>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <!-- Logo -->
+  <svg width="100" height="33" viewBox="0 0 123 41" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-bottom:20px;display:block;">
+    <text x="0" y="28" font-family="Calibri,Georgia,serif" font-weight="700" font-size="22" fill="#2F2F2F">Grand Litier</text>
+  </svg>
+
+  <p class="footer-visit">Venez nous rendre visite dans un de nos 3 magasins Grand Litier Réunion !</p>
+  <button class="footer-btn-magasin">
+    <img src="https://www.figma.com/api/mcp/asset/9b01aba7-c18a-4a73-b321-3cf8fdf973b1" alt="" style="width:16px;height:16px;" />
+    Nos magasins
+  </button>
+
+  <!-- Follow -->
+  <p class="footer-section-title" style="margin-top:0;">Suivez-nous !</p>
+  <div class="footer-social">
+    <img class="footer-social-icon" src="https://www.figma.com/api/mcp/asset/f0b23c8a-2d47-450f-848d-f626df27f0b1" alt="Facebook" />
+    <img class="footer-social-icon" src="https://www.figma.com/api/mcp/asset/6a49e5db-b895-4130-81c7-acc94761b238" alt="Instagram" />
+    <img class="footer-social-icon" src="https://www.figma.com/api/mcp/asset/9c1634e5-d57b-4811-ad1f-43bcd4454de3" alt="LinkedIn" />
+  </div>
+
+  <!-- Le Mag -->
+  <p class="footer-section-title">Le Mag Grand Litier</p>
+  <div class="footer-links">
+    <a href="#" class="footer-link">Bien-être</a>
+    <a href="#" class="footer-link">Conseils literie</a>
+    <a href="#" class="footer-link">Tous les articles du Mag</a>
+    <a href="#" class="footer-link">Tous nos guides</a>
+  </div>
+
+  <!-- Nous connaître -->
+  <p class="footer-section-title">Nous connaître</p>
+  <div class="footer-links">
+    <a href="#" class="footer-link">Qui sommes-nous ?</a>
+    <a href="#" class="footer-link">Nos valeurs</a>
+    <a href="#" class="footer-link">Nos engagements</a>
+    <a href="#" class="footer-link">On recrute ! 👋</a>
+    <a href="#" class="footer-link">Rejoindre notre réseau</a>
+    <a href="#" class="footer-link">Contactez-nous</a>
+  </div>
+
+  <!-- Marques -->
+  <p class="footer-section-title">Les plus grandes marques de literie sont chez Grand Litier</p>
+  <div class="footer-links">
+    <a href="#" class="footer-link">Tempur</a>
+    <a href="#" class="footer-link">Dunlopillo</a>
+    <a href="#" class="footer-link">André Renault</a>
+    <a href="#" class="footer-link">Alpen</a>
+    <a href="#" class="footer-link">Hôtel & Lodge</a>
+    <a href="#" class="footer-link">Beautyrest Luxury</a>
+    <a href="#" class="footer-link">Epeda</a>
+    <a href="#" class="footer-link">Et bien plus encore...</a>
+  </div>
+
+  <!-- Logos partenaires -->
+  <div class="footer-logos" style="margin-top:24px;">
+    <img src="https://www.figma.com/api/mcp/asset/24de8a35-12c6-4cd5-9c99-76ef9deb2165" alt="Ecomaison" style="height:40px;" />
+    <img src="https://www.figma.com/api/mcp/asset/87bd2bce-0471-407f-ac6f-673d94626bd2" alt="Parlons literie" style="height:40px;" />
+  </div>
+
+  <!-- Divider + Legal -->
+  <div class="footer-divider"></div>
+  <div class="footer-legal">
+    <a href="#">CGV</a>
+    <a href="#">Mentions légales</a>
+    <a href="#">Politique de confidentialité</a>
+  </div>
+  <p class="footer-copy">© 2026 Grand Litier, tous droits réservés.</p>
+</footer>
+
+</body>
+</html>
